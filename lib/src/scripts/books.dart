@@ -213,6 +213,7 @@ class BookInfo {
     Map<String, dynamic> json, {
     bool reschemeImageLinks = false,
   }) {
+    print("trying to get pub date");
     final publishedDateArray =
         ((json['publishedDate'] as String?) ?? '0000-00-00').split('-');
 
