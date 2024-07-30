@@ -214,7 +214,6 @@ class BookInfo {
     bool reschemeImageLinks = false,
   }) {
     DateTime? publishedDate;
-    print(json['categories'].toString());
     try{
       final publishedDateArray =
       ((json['publishedDate'] as String?) ?? '0000-00-00').split('-');
