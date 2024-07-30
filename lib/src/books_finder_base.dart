@@ -74,6 +74,7 @@ Future<List<Book>> queryBooks(
     final list = (jsonDecode(result.body))['items'] as List<dynamic>?;
     if (list == null) return [];
     for (final e in list) {
+      print("HERE " + e);
       books.add(Book.fromJson(e, reschemeImageLinks: reschemeImageLinks));
     }
     return books;
