@@ -213,12 +213,12 @@ class BookInfo {
     Map<String, dynamic> json, {
     bool reschemeImageLinks = false,
   }) {
+    DateTime? publishedDate;
     try{
       final publishedDateArray =
       ((json['publishedDate'] as String?) ?? '0000-00-00').split('-');
 
       // initialize datetime variable
-      DateTime? publishedDate;
       if (publishedDateArray.isNotEmpty) {
         // initialize date
         int year = int.parse(publishedDateArray[0]);
@@ -245,7 +245,7 @@ class BookInfo {
       }
     }catch(e){
       print("exception trying to get pub date : " + e);
-      //publishedDate = null;
+      publishedDate = null;
     }
 
 
