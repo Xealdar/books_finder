@@ -209,45 +209,27 @@ class BookInfo {
     required this.canonicalVolumeLink,
   });
 
-  static BookInfo fromJson(
-    Map<String, dynamic> json, {
-    bool reschemeImageLinks = false,
-  }) {
-    final publishedDateArray =
-        ((json['publishedDate'] as String?) ?? '0000-00-00').split('-');
-
+  static Boostatic BookInfo fromJson(
+      Map<String, dynamic> json, {
+        bool reschemeImageLinks = false,
+      }) {
     // initialize datetime variable
     DateTime? publishedDate;
-    if (publishedDateArray.isNotEmpty) {
-      // initialize date
-      int year = int.parse(publishedDateArray[0]);
-      int month = 1;
-      int day = 1;
+    String rawDate = (json['publishedDate'] as String?) ?? '';
 
-      // now test the date string
-      if (publishedDateArray.length == 1) {
-        // assume we have only the year
-        year = int.parse(publishedDateArray[0]);
-      }
-      if (publishedDateArray.length == 2) {
-        // assume we have the year and maybe the month (this could be just a speculative case)
-        year = int.parse(publishedDateArray[0]);
-        month = int.parse(publishedDateArray[1]);
-      }
-      if (publishedDateArray.length == 3) {
-        // assume we have year-month-day
-        year = int.parse(publishedDateArray[0]);
-        month = int.parse(publishedDateArray[1]);
-        day = int.parse(publishedDateArray[2]);
-      }
-      publishedDate = DateTime(year, month, day);
+    // try to parse the date
+    try {
+      publishedDate = DateTime.parse(rawDate);
+    } catch (e) {
+      // handle the parsing error if any
+      publishedDate = null;
     }
 
     final imageLinks = <String, Uri>{};
     (json['imageLinks'] as Map<String, dynamic>?)?.forEach((key, value) {
       Uri uri = Uri.parse(value.toString());
       if (reschemeImageLinks) {
-        if (uri.isScheme('HTTP')) {
+        if (uri.isScheme('http')) {
           uri = Uri.parse(value.toString().replaceAll('http://', 'https://'));
         }
       }
@@ -268,7 +250,7 @@ class BookInfo {
       pageCount: json['pageCount'] ?? 0,
       ratingsCount: json['ratingsCount'] ?? 0,
       publishedDate: publishedDate,
-      rawPublishedDate: (json['publishedDate'] as String?) ?? '',
+      rawPublishedDate: rawDate,
       imageLinks: imageLinks,
       industryIdentifiers: ((json['industryIdentifiers'] ?? []) as List)
           .map((i) => IndustryIdentifier.fromJson(i))
@@ -278,6 +260,7 @@ class BookInfo {
       canonicalVolumeLink: Uri.parse(json['canonicalVolumeLink']),
     );
   }
+
 
   Map<String, dynamic> toJson() {
     return {
