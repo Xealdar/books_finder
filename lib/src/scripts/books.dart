@@ -16,7 +16,7 @@ class Book {
   /// The information about the book's sale info
   final SaleInfo saleInfo;
 
-  const Book({
+  Book({
     required this.id,
     this.etag,
     required this.info,
@@ -158,7 +158,7 @@ class BookInfo {
   final int pageCount;
 
   /// The categories the book is in
-  final List<String> categories;
+  late List<String> categories;
 
   /// The average rating
   final double averageRating;
@@ -187,7 +187,7 @@ class BookInfo {
   /// The canonical volume link
   final Uri canonicalVolumeLink;
 
-  const BookInfo({
+  BookInfo({
     required this.title,
     required this.subtitle,
     required this.authors,
