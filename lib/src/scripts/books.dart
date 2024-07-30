@@ -157,6 +157,8 @@ class BookInfo {
   /// The amount of pages the book has
   final int pageCount;
 
+  final String mainCategory;
+
   /// The categories the book is in
   final List<String> categories;
 
@@ -193,6 +195,7 @@ class BookInfo {
     required this.authors,
     required this.publisher,
     required this.averageRating,
+    required this.mainCategory;
     required this.categories,
     required this.contentVersion,
     required this.description,
@@ -266,6 +269,7 @@ class BookInfo {
       authors: ((json['authors'] as List<dynamic>?) ?? []).toStringList(),
       publisher: json['publisher'] ?? '',
       averageRating: ((json['averageRating'] ?? 0) as num).toDouble(),
+      mainCategory: json['mainCategory'] ?? '',
       categories: ((json['categories'] as List<dynamic>?) ?? []).toStringList(),
       contentVersion: json['contentVersion'] ?? '',
       description: json['description'] ?? '',
@@ -294,6 +298,7 @@ class BookInfo {
       'publishedDate': publishedDate,
       'rawPublishedDate': rawPublishedDate,
       'averageRating': averageRating,
+      'mainCategory': mainCategory,
       'categories': categories,
       'contentVersion': contentVersion,
       'description': description,
@@ -312,7 +317,7 @@ class BookInfo {
 
   @override
   String toString() {
-    return 'BookInfo(title: $title, subtitle: $subtitle authors: $authors, publisher: $publisher, publishedDate: $publishedDate, rawPublishedDate: $rawPublishedDate, description: $description, industryIdentifiers: $industryIdentifiers, pageCount: $pageCount, categories: $categories, averageRating: $averageRating, ratingsCount: $ratingsCount, maturityRating: $maturityRating, contentVersion: $contentVersion, imageLinks: $imageLinks, language: $language, previewLink: $previewLink, infoLink: $infoLink, canonicalVolumeLink: $canonicalVolumeLink)';
+    return 'BookInfo(title: $title, subtitle: $subtitle authors: $authors, publisher: $publisher, publishedDate: $publishedDate, rawPublishedDate: $rawPublishedDate, description: $description, industryIdentifiers: $industryIdentifiers, pageCount: $pageCount, mainCategory: $mainCategory, categories: $categories, averageRating: $averageRating, ratingsCount: $ratingsCount, maturityRating: $maturityRating, contentVersion: $contentVersion, imageLinks: $imageLinks, language: $language, previewLink: $previewLink, infoLink: $infoLink, canonicalVolumeLink: $canonicalVolumeLink)';
   }
 
   @override
@@ -329,6 +334,7 @@ class BookInfo {
         other.description == description &&
         other.industryIdentifiers == industryIdentifiers &&
         other.pageCount == pageCount &&
+        other.mainCategory == mainCategory &&
         other.categories == categories &&
         other.averageRating == averageRating &&
         other.ratingsCount == ratingsCount &&
@@ -352,6 +358,7 @@ class BookInfo {
         description.hashCode ^
         industryIdentifiers.hashCode ^
         pageCount.hashCode ^
+        mainCategory.hashCode ^
         categories.hashCode ^
         averageRating.hashCode ^
         ratingsCount.hashCode ^
