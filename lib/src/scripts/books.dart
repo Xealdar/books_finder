@@ -245,7 +245,7 @@ class BookInfo {
       }
     }catch(e){
       print("exception trying to get pub date : " + e);
-      publishedDate = null;
+      //publishedDate = null;
     }
 
 
