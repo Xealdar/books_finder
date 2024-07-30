@@ -195,7 +195,7 @@ class BookInfo {
     required this.authors,
     required this.publisher,
     required this.averageRating,
-    required this.mainCategory;
+    required this.mainCategory,
     required this.categories,
     required this.contentVersion,
     required this.description,
