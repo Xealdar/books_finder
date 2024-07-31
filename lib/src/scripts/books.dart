@@ -244,7 +244,7 @@ class BookInfo {
         publishedDate = DateTime(year, month, day);
       }
     }catch(e){
-      print("exception trying to get pub date : " + e.toString());
+      //print("exception trying to get pub date : " + e.toString());
       publishedDate = null;
     }
 
