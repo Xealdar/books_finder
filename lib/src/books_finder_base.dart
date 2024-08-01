@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'scripts/books.dart';
 import 'package:http/http.dart' as http;
+import 'key.dart';
 
 export 'scripts/books.dart';
 
@@ -68,7 +69,7 @@ Future<List<Book>> queryBooks(
   if (printType != null) {
     q += '&printType=${printType.toString().replaceAll('PrintType.', '')}';
   }
-
+  q += '&key=$googleAPIKey';
   final result = await http.get(Uri.parse(q));
   if (result.statusCode == 200) {
     final books = <Book>[];
