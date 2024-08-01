@@ -68,6 +68,7 @@ Future<List<Book>> queryBooks(
   if (printType != null) {
     q += '&printType=${printType.toString().replaceAll('PrintType.', '')}';
   }
+
   final result = await http.get(Uri.parse(q));
   if (result.statusCode == 200) {
     final books = <Book>[];
